@@ -4,24 +4,13 @@ import {
   createWebHistory,
   RouteRecordRaw
 } from "vue-router"
-import HelloWorld from "../components/HelloWorld.vue"
-import PageTeste from "../components/PageTeste.vue"
-import HomePage from "../components/HomePage.vue"
 
+import HomePage from "../views/HomePage.vue"
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
+    name: "Home",
     component: HomePage
-  },
-  {
-    path: "/helloworld",
-    component: HelloWorld,
-    name: "helloworld"
-  },
-  {
-    path: "/teste",
-    component: PageTeste,
-    name: "teste"
   }
 ]
 

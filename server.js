@@ -58,6 +58,6 @@ async function initServer() {
 
 initServer().then(({ app }) =>
   app.listen(8569, () => {
-    console.log("ready")
+    console.log("Server started on: http://localhost:8569")
   })
 )
