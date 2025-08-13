@@ -44,13 +44,19 @@ async function initServer() {
     // 4. render the app HTML. This assumes entry-server.js's exported
     //     `render` function calls appropriate framework SSR APIs,
     //    e.g. ReactDOMServer.renderToString()
-    const { html: appHtml } = await render(req.originalUrl)
     // 5. Inject the app-rendered HTML into the template.
-    const html = template.replace("<!--app-html-->", appHtml)
 
-    console.log("yes it did reach the server side")
-    // 6. Send the rendered HTML back.
-    res.set({ "Content-Type": "text/html" }).end(html)
+    try {
+      const { html: appHtml } = await render(req.originalUrl)
+
+      const html = template.replace("<!--app-html-->", appHtml)
+      // 6. Send the rendered HTML back.
+      res.set({ "Content-Type": "text/html" }).end(html)
+    } catch (error) {
+      vite.ssrFixStacktrace(error)
+      console.error("SSR Error:", error)
+      res.status(500).end("Internal Server Error: \n" + error)
+    }
   })
 
   return { app, vite }

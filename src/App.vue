@@ -9,7 +9,5 @@
 import { RouterView } from "vue-router"
 import { ref } from "vue"
 import { mapStores } from "pinia"
-
 const store = mapStores()
-console.log(store)
 </script>

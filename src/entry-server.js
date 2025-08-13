@@ -25,6 +25,6 @@ export const render = async (url) => {
       html
     }
   } catch (error) {
-    console.log(error)
+    throw error
   }
 }

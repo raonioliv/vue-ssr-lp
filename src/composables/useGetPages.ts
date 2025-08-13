@@ -2,7 +2,6 @@ import PageService from "../services/content/PageService"
 
 async function useGetPageByID(slug: number, populate?: string) {
   const page = (await PageService.getPage(slug, populate)).data.data
-  console.log(">>>", page)
   return page
 }
 
@@ -18,7 +17,6 @@ export async function useGetPage(param: string | number, depth: number) {
   try {
     if (!(typeof param == "string")) {
       result = await useGetPageByID(param, populate)
-      console.log("raoni", result)
     }
   } catch (error) {
     result = error
